@@ -1,7 +1,7 @@
 # webshop-project
 
-`npm i --save`
-`npm run start` or `sails console` to run the project
++ `npm i --save`
++ `npm run start` or `sails console` to run the project
 
 a [Sails v1](https://sailsjs.com) application
 
