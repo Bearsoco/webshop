@@ -1,5 +1,7 @@
 # webshop-project
 
+`npm run start` or `sails console`
+
 a [Sails v1](https://sailsjs.com) application
 
 
