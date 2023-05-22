@@ -22,7 +22,7 @@ module.exports = {
 
     const mailOptions = {
       from: 'onec9513@gmail.com',
-      to: 'onec9513@gmail.com',
+      to: customer.email,
       subject: 'Order Confirmation - BellaShop',
       text: `Hi ${customer.name}! \n Order: ${transaction.reference}. Total: ${transaction.total_amount}€
         \n Address: ${transaction.shipping_address}

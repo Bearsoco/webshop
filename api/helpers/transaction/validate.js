@@ -15,37 +15,32 @@ module.exports = {
       required: true
     }
   },
-  exits: {
-    emailAlreadyInUse: {
-      statusCode: 400,
-      description: 'Email already in use!',
-    },
-  },
   fn: async function ({ customer_id, products, payment_method }, exits) {
 
     //Find the customer
     const customer = await Customer.findOne(customer_id);
-    if (!customer) exits.emailAlreadyInUse();
+    if (!customer){
+      return exits.error('customer.notFound');
+    }
 
     //Check if payment is among accepted payments
     const { payment, state } = sails.config.transaction;
-    if (!payment[payment_method]) exits.badRequest("Payment type not found");
+    if (!payment[payment_method]) {
+      return exits.error('payment.notFound');
+    }
 
     //Valudate products and calculate total
     let total_amount = 0;
 
     const items = await Promise.all(products.map(async (product) => {
       const item = await Product.findOne(product.id);
-      if (!item) exits.badRequest("Product not found");
+      if (!item){
+        return exist.error('product.notFound');
+      }
 
       total_amount += (item.price * product.quantity);
 
-      return {
-        ...product,
-        name: item.name,
-        description: item.description,
-        price: item.price
-      };
+      return item;
     }));
 
     return exits.success({ customer, state, total_amount, products: items });
