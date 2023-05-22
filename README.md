@@ -3,6 +3,31 @@
 + `npm i --save`
 + `npm run start` or `sails console` to run the project
 
++ I also dockerized it!
+
+After running the project you can test it on postman:
+
+```
+curl --location --request POST 'http://localhost:8080/order' \
+--header 'Content-Type: application/json' \
+--header 'Cookie: sails.sid=s%3AGXr3x1KqnyFz8-1bR7BRTiP79A0FQILQ.e3nT8mXrum8hAh3JdCNXEbvx5ymHlbMei8JJX0vPhkA' \
+--data-raw '{
+    "customer": 1,
+    "products": [
+        {
+            "id": 1,
+            "quantity": 3
+        },
+        {
+            "id": 2,
+            "quantity": 1
+        }
+    ],
+    "shipping_address": "The Netherlands",
+    "payment_method": "CREDIT_CARD"
+}'
+```
+
 a [Sails v1](https://sailsjs.com) application
 
 
