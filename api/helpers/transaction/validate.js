@@ -32,16 +32,22 @@ module.exports = {
     //Valudate products and calculate total
     let total_amount = 0;
 
-    const items = await Promise.all(products.map(async (product) => {
+    const items = [];
+
+    for (const product of products) {
       const item = await Product.findOne(product.id);
+
       if (!item){
         return exist.error('product.notFound');
       }
 
       total_amount += (item.price * product.quantity);
 
-      return item;
-    }));
+      items.push({
+        ...item,
+        quantity: product.quantity
+      });
+    }
 
     return exits.success({ customer, state, total_amount, products: items });
   }
