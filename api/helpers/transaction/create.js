@@ -45,8 +45,7 @@ module.exports = {
       await TransactionItem.create({
         product: item.id,
         quantity: item.quantity,
-        transaction: transaction.id,
-        price: item.price
+        transaction: transaction.id
       });
 
       delete item.id;
