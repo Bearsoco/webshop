@@ -51,19 +51,6 @@ module.exports = {
 
       delete item.id;
     }
-
-    // const res = await Promise.all(items.map(async item => {
-    //   await TransactionItem.create({
-    //     product: item.id,
-    //     quantity: item.quantity,
-    //     transaction: transaction.id,
-    //     price: item.price
-    //   });
-
-    //   delete item.id;
-    //   return Promise.resolve(item);
-    // }));
-
     const result = {
         transaction: _.omit(transaction, ['id', 'customer']),
         products: items,
